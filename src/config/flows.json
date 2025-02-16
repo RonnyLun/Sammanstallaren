@@ -1,0 +1,217 @@
+[
+  {
+    "id": "iafErrandSummarizer",
+    "municipalityId": "2281",
+    "name": "Ärendesammanställning",
+    "description": "Flöde för att sammanfatta journal och Scocial kartläggning för klienter av ekonomiskt bistånd",
+    "inputPrefix": "iaf",
+    "defaultTemplateId": "arendesammanstallning.docx",
+    "input": [
+      {
+        "id": "extraPrompt",
+        "order": 1,        
+        "name": "Handläggarens kommentar",
+        "hint": "Är det några specifika instruktioner som du vill skicka in till promptrn",
+        "mandatory": false,
+        "type": "TEXT",
+        "cardinality": "SINGLE_VALUED"
+      },
+      {
+        "id": "SocialBackground",
+        "order": 3,        
+        "name": "Social kartläggning",
+        "hint": "Ladda upp den sociala kartläggningen",
+        "mandatory": false,
+        "type": "DOCUMENT",
+        "cardinality": "MULTIPLE_VALUED"
+      },
+      {
+        "id": "Journal",
+        "order": 2,        
+        "name": "Journalen",
+        "hint": "Ladda upp en eller flera journalfiler",
+        "mandatory": true,
+        "type": "DOCUMENT",
+        "cardinality": "MULTIPLE_VALUED"
+      }
+    ],
+  "steps": [
+    {
+      "id": "1.0",
+      "order": 1,
+      "name": "Planering och Hälsa",
+      "intricServiceId": "0abf85b2-0794-4980-9249-93c2d8403724",
+      "input": [
+        {
+          "flow-input-ref": "errandID"
+        },
+        {
+          "flow-input-ref": "extraPrompt"
+        },
+        {
+          "flow-input-ref": "SocialBackground"
+        },
+        {
+          "flow-input-ref": "Journal"
+        }		
+      ]
+    },
+    {
+      "id": "2.0",
+      "order": 2,
+      "name": "Tidigare insatser",
+      "intricServiceId": "f1e7c2cc-38e7-4cde-8368-b875c226c4ec",
+      "input": [
+        {
+          "flow-input-ref": "errandID"
+        },
+        {
+          "flow-input-ref": "extraPrompt"
+        },
+        {
+          "flow-input-ref": "SocialBackground"
+        },
+        {
+          "flow-input-ref": "Journal"
+        }	
+      ]
+    },
+    {
+      "id": "3.0",
+      "order": 2,
+      "name": "Familj och boendesituation",
+      "intricServiceId": "d02389c2-500b-45f5-b8e5-1c118fe28a5e",
+      "input": [
+        {
+          "flow-input-ref": "errandID"
+        },
+        {
+          "flow-input-ref": "extraPrompt"
+        },
+        {
+          "flow-input-ref": "SocialBackground"
+        },
+        {
+          "flow-input-ref": "Journal"
+        }	
+      ]
+    },
+    {
+      "id": "4.0",
+      "order": 2,
+      "name": "Barns situation",
+      "intricServiceId": "25aee1c8-1760-4418-a38e-5910ebbb5f54",
+      "input": [
+        {
+          "flow-input-ref": "Journal"
+        }	
+      ]
+    },
+    {
+      "id": "5.0",
+      "order": 2,
+      "name": "Ekonomi",
+      "intricServiceId": "41d79fe1-c3e2-4954-ab84-d3e14f5c44e1",
+      "input": [
+        {
+          "flow-input-ref": "Journal"
+        }	
+      ]
+    },
+    {
+      "id": "6.0",
+      "order": 2,
+      "name": "Övrigt",
+      "intricServiceId": "a2a4f1bd-e734-4478-9d95-b00aa3d1e547",
+      "input": [
+        {
+          "flow-input-ref": "Journal"
+        }	
+      ]
+    },
+    {
+      "id": "7.0",
+      "order": 2,
+      "name": "Individuella bedömningar",
+      "intricServiceId": "d2a69e95-0d0a-4e8c-9615-8d1917d85aa9",
+      "input": [
+        {
+          "flow-input-ref": "Journal"
+        }	
+      ]
+    }
+  ]
+  },
+  {
+    "id": "BuFUtredning",
+    "municipalityId": "2281",
+    "name": "Utredning BuF",
+    "description": "Flöde för att generera utkast till en utredning enligt BBIC",
+    "inputPrefix": "iaf",
+    "defaultTemplateId": "some.template.id",
+    "input": [
+      {
+        "id": "extraPrompt",
+        "order": 1,        
+        "name": "Handläggarens kommentar",
+        "hint": "Är det några specifika instruktioner som du vill skicka in till promptrn",
+        "mandatory": false,
+        "type": "TEXT",
+        "cardinality": "SINGLE_VALUED"
+      },
+      {
+        "id": "Background",
+        "order": 3,        
+        "name": "Bakgrundmaterial",
+        "hint": "Ladda upp alla bagrundmaterial",
+        "mandatory": false,
+        "type": "DOCUMENT",
+        "cardinality": "MULTIPLE_VALUED"
+      }
+    ],
+    "steps": [
+    {
+      "id": "1.0",
+      "order": 1,
+      "name": "Barnets utveckling",
+      "intricServiceId": "c82904ef-62a1-4aea-9871-693d534a08c1",
+      "input": [
+        {
+          "flow-input-ref": "extraPrompt"
+        },
+        {
+          "flow-input-ref": "Background"
+        }
+      ]
+    },
+    {
+      "id": "2.0",
+      "order": 2,
+      "name": "Familj och miljö",
+      "intricServiceId": "8aedc068-8d61-47ca-934c-b6d86cfb2131",
+      "input": [
+        {
+          "flow-input-ref": "extraPrompt"
+        },
+        {
+          "flow-input-ref": "Background"
+        }
+      ]
+    },
+    {
+      "id": "3.0",
+      "order": 2,
+      "name": "Föräldrarnas förmåga",
+      "intricServiceId": "f5de19e8-2ba7-41b9-b3d8-6c1b9a5c5be5",
+      "input": [
+        {
+          "flow-input-ref": "extraPrompt"
+        },
+        {
+          "flow-input-ref": "Background"
+        }
+      ]
+    }     
+    ]
+  }
+]
